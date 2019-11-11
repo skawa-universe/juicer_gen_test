@@ -2,9 +2,10 @@ name: juicer_gen_test
 version: 0.9.0+2
 
 dependencies:
-  juicer:
+  juicer: ^0.10.0
 
 dev_dependencies:
   test:
+  build_test:
   build_runner:
   build_web_compilers:
