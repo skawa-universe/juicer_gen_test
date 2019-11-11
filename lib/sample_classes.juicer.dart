@@ -24,14 +24,14 @@ class _$SomethingJuicer extends ClassMapper<jcr_i1.Something> {
         "completelyDifferent": juicer.encode(val.completelyDifferent),
         "rawMap": val.rawMap == null
             ? null
-            : new Map.fromIterable(val.rawMap.keys,
+            : Map.fromIterable(val.rawMap.keys,
                 value: (k) => juicer.encode(val.rawMap[k])),
         "differentList": val.differentList?.map(juicer.encode)?.toList(),
         "differentIterable":
             val.differentIterable?.map(juicer.encode)?.toList(),
         "intMap": val.intMap == null
             ? null
-            : new Map.fromIterable(val.intMap.keys,
+            : Map.fromIterable(val.intMap.keys,
                 value: (k) => juicer.encode(val.intMap[k])),
         "getterDecoration": val.b,
         "setterDecoration": val.c,
@@ -86,7 +86,7 @@ class _$DifferentJuicer extends ClassMapper<jcr_i2.Different> {
         "something": juicer.encode(val.something),
         "deep": val.deep == null
             ? null
-            : new Map.fromIterable(val.deep.keys,
+            : Map.fromIterable(val.deep.keys,
                 value: (k) => juicer.encode(val.deep[k])),
         "readOnly": val.readOnly,
 // writeOnly is ignored

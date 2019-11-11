@@ -1,5 +1,5 @@
 name: juicer_gen_test
-version: 0.9.0+2
+version: 0.10.0
 
 dependencies:
   juicer: ^0.10.0

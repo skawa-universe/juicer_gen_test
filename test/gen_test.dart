@@ -14,7 +14,7 @@ void main() {
     print(json.encode(val));
     matchSomething(val, sg);
     dynamic recoded = recode(juicer.encode(sg));
-    Something redecoded = juicer.decode(recoded, (_) => new Something());
+    Something redecoded = juicer.decode(recoded, (_) => Something());
     matchSomething(juicer.encode(redecoded), sg);
   });
 }
