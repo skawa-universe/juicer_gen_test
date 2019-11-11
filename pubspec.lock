@@ -256,10 +256,10 @@ packages:
   juicer:
     dependency: "direct main"
     description:
-      path: "../juicer"
-      relative: true
-    source: path
-    version: "0.9.0+4"
+      name: juicer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
   kernel:
     dependency: transitive
     description:
