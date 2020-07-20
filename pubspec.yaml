@@ -1,11 +1,15 @@
 name: juicer_gen_test
 version: 0.10.0
 
+environment:
+  sdk: ">=2.8.0 <3.0.0"
+
 dependencies:
   juicer: ^0.10.0
 
 dev_dependencies:
   test:
-  build_test:
-  build_runner:
-  build_web_compilers:
+  build_test: any
+  build_runner: any
+  build_web_compilers: any
+
