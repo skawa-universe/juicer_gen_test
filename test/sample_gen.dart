@@ -61,6 +61,10 @@ void matchSomething(dynamic val, Something expected) {
     matchDifferentList(val["differentIterable"], expected.differentIterable);
     expect(val["intMap"], expected.intMap);
     expect(val["intMap"], anyOf(isNull, isNot(same(expected.intMap))));
+    expect(val["intList"], expected.intList);
+    expect(val["intList"], anyOf(isNull, isNot(same(expected.intList))));
+    expect(val["numList"], expected.numList);
+    expect(val["numList"], anyOf(isNull, isNot(same(expected.numList))));
     expect(val["getterDecoration"], expected.b);
     expect(val["setterDecoration"], expected.c);
   }
@@ -88,5 +92,7 @@ Something createSampleSomething() {
       "bravo": 2,
       "charlie": 3,
       "delta": 4,
-    };
+    }
+    ..intList = [10, 30, 20, 40]
+    ..numList = [-5, 1.23, 0];
 }

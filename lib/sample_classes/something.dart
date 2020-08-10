@@ -46,4 +46,8 @@ class Something {
   Iterable<Different> differentIterable;
 
   Map<String, int> intMap;
+
+  List<int> intList;
+
+  List<num> numList;
 }

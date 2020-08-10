@@ -6,7 +6,7 @@
 
 import "package:juicer_gen_test/sample_classes/something.dart" as jcr_i1;
 import "package:juicer_gen_test/sample_classes/different.dart" as jcr_i2;
-import "package:juicer/juicer.dart";
+import 'package:juicer/juicer.dart';
 export "package:juicer_gen_test/sample_classes.dart";
 
 // package:juicer_gen_test/sample_classes/something.dart Something
@@ -33,6 +33,8 @@ class _$SomethingJuicer extends ClassMapper<jcr_i1.Something> {
             ? null
             : Map.fromIterable(val.intMap.keys,
                 value: (k) => juicer.encode(val.intMap[k])),
+        "intList": val.intList?.map(juicer.encode)?.toList(),
+        "numList": val.numList?.map(juicer.encode)?.toList(),
         "getterDecoration": val.b,
         "setterDecoration": val.c,
 // ignored1 is ignored
@@ -65,6 +67,12 @@ class _$SomethingJuicer extends ClassMapper<jcr_i1.Something> {
       empty.intMap = juicer.decodeMap(
               map["intMap"], (dynamic val) => val?.toInt(), <String, int>{})
           as Map<String, int>;
+    if (map.containsKey("intList"))
+      empty.intList = juicer.decodeIterable(
+          map["intList"], (dynamic val) => val?.toInt(), <int>[]) as List<int>;
+    if (map.containsKey("numList"))
+      empty.numList = juicer.decodeIterable(
+          map["numList"], (dynamic val) => val as num, <num>[]) as List<num>;
     if (map.containsKey("getterDecoration"))
       empty.b = map["getterDecoration"]?.toInt();
     if (map.containsKey("setterDecoration"))
