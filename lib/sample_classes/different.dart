@@ -12,6 +12,10 @@ class Different {
 
   Map<String, /*List<int>*/ dynamic> deep; // deep types are not supported yet
 
+  Map<String, Map> notSoDeep;
+
+  Map<String, Different> otherNamedDiffs;
+
   int get readOnly => 7;
 
   set writeOnly(String value) => print(value);

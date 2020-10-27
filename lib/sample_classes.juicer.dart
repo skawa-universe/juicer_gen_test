@@ -82,6 +82,14 @@ extension DifferentJuicerI2 on jcr_i2.Different {
         "deep": this.deep == null
             ? null
             : Map.fromIterable(this.deep.keys, value: (k) => this.deep[k]),
+        "notSoDeep": this.notSoDeep == null
+            ? null
+            : Map.fromIterable(this.notSoDeep.keys,
+                value: (k) => this.notSoDeep[k]),
+        "otherNamedDiffs": this.otherNamedDiffs == null
+            ? null
+            : Map.fromIterable(this.otherNamedDiffs.keys,
+                value: (k) => this.otherNamedDiffs[k]?.toMap()),
         "readOnly": this.readOnly,
 // writeOnly is ignored
       });
@@ -94,6 +102,15 @@ extension DifferentJuicerI2 on jcr_i2.Different {
     if (map.containsKey("deep"))
       this.deep =
           map["deep"] == null ? null : Map<String, dynamic>.from(map["deep"]);
+    if (map.containsKey("notSoDeep"))
+      this.notSoDeep = map["notSoDeep"] == null
+          ? null
+          : Map<String, Map>.from(map["notSoDeep"]);
+    if (map.containsKey("otherNamedDiffs"))
+      this.otherNamedDiffs = map["otherNamedDiffs"] == null
+          ? null
+          : nullSafeMapJsonMapValues(map["otherNamedDiffs"],
+              (val) => jcr_i2.Different.json().populateFromMap(val));
 // readOnly is ignored
     if (map.containsKey("writeOnly")) this.writeOnly = map["writeOnly"];
     return this;
