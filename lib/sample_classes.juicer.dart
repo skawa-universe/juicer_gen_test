@@ -6,115 +6,96 @@
 
 import "package:juicer_gen_test/sample_classes/something.dart" as jcr_i1;
 import "package:juicer_gen_test/sample_classes/different.dart" as jcr_i2;
-import 'package:juicer/juicer.dart';
+import 'package:juicer/juicer_util.dart';
 export "package:juicer_gen_test/sample_classes.dart";
 
 // package:juicer_gen_test/sample_classes/something.dart Something
 // package:juicer_gen_test/sample_classes/different.dart Different
-class _$SomethingJuicer extends ClassMapper<jcr_i1.Something> {
-  const _$SomethingJuicer();
-  @override
-  jcr_i1.Something newInstance() => jcr_i1.Something();
-  @override
-  Map<String, dynamic> toMap(Juicer juicer, jcr_i1.Something val) =>
-      juicer.removeNullValues({
-        "simpleNum": val.simpleNum,
-        "sampleDouble": val.sampleDouble,
-        "integerDouble": val.integerDouble,
-        "completelyDifferent": juicer.encode(val.completelyDifferent),
-        "rawMap": val.rawMap == null
+extension SomethingJuicerI1 on jcr_i1.Something {
+  Map<String, dynamic> toMap() => removeNullValues({
+        "simpleNum": this.simpleNum,
+        "sampleDouble": this.sampleDouble,
+        "integerDouble": this.integerDouble,
+        "completelyDifferent": this.completelyDifferent?.toMap(),
+        "rawMap": this.rawMap == null
             ? null
-            : Map.fromIterable(val.rawMap.keys,
-                value: (k) => juicer.encode(val.rawMap[k])),
-        "differentList": val.differentList?.map(juicer.encode)?.toList(),
+            : Map.fromIterable(this.rawMap.keys, value: (k) => this.rawMap[k]),
+        "differentList": this.differentList?.map((e) => e?.toMap())?.toList(),
         "differentIterable":
-            val.differentIterable?.map(juicer.encode)?.toList(),
-        "intMap": val.intMap == null
+            this.differentIterable?.map((e) => e?.toMap())?.toList(),
+        "intMap": this.intMap == null
             ? null
-            : Map.fromIterable(val.intMap.keys,
-                value: (k) => juicer.encode(val.intMap[k])),
-        "intList": val.intList?.map(juicer.encode)?.toList(),
-        "numList": val.numList?.map(juicer.encode)?.toList(),
-        "getterDecoration": val.b,
-        "setterDecoration": val.c,
+            : Map.fromIterable(this.intMap.keys, value: (k) => this.intMap[k]),
+        "intList": this.intList?.toList(),
+        "numList": this.numList?.toList(),
+        "getterDecoration": this.b,
+        "setterDecoration": this.c,
 // ignored1 is ignored
 // ignored2 is ignored
       });
-  @override
-  jcr_i1.Something fromMap(Juicer juicer, Map map, jcr_i1.Something empty) {
-    if (map.containsKey("simpleNum")) empty.simpleNum = map["simpleNum"];
+  jcr_i1.Something populateFromMap(Map map) {
+    if (map.containsKey("simpleNum")) this.simpleNum = map["simpleNum"];
     if (map.containsKey("sampleDouble"))
-      empty.sampleDouble = map["sampleDouble"]?.toDouble();
+      this.sampleDouble = map["sampleDouble"]?.toDouble();
     if (map.containsKey("integerDouble"))
-      empty.integerDouble = map["integerDouble"]?.toDouble();
+      this.integerDouble = map["integerDouble"]?.toDouble();
     if (map.containsKey("completelyDifferent"))
-      empty.completelyDifferent = juicer.decode(
-          map["completelyDifferent"], (_) => jcr_i2.Different.json());
+      this.completelyDifferent = map["completelyDifferent"] == null
+          ? null
+          : jcr_i2.Different.json().populateFromMap(map["completelyDifferent"]);
     if (map.containsKey("rawMap"))
-      empty.rawMap = juicer.decodeMap(map["rawMap"], null, <String, dynamic>{})
-          as Map<String, dynamic>;
+      this.rawMap = map["rawMap"] == null
+          ? null
+          : Map<String, dynamic>.from(map["rawMap"]);
     if (map.containsKey("differentList"))
-      empty.differentList = juicer.decodeIterable(
-          map["differentList"],
-          (_) => jcr_i2.Different.json(),
-          <jcr_i2.Different>[]) as List<jcr_i2.Different>;
+      this.differentList = map["differentList"]
+          ?.map<jcr_i2.Different>(
+              (val) => jcr_i2.Different.json().populateFromMap(val))
+          ?.toList();
     if (map.containsKey("differentIterable"))
-      empty.differentIterable = juicer.decodeIterable(
-          map["differentIterable"],
-          (_) => jcr_i2.Different.json(),
-          <jcr_i2.Different>[]) as List<jcr_i2.Different>;
+      this.differentIterable = map["differentIterable"]
+          ?.map<jcr_i2.Different>(
+              (val) => jcr_i2.Different.json().populateFromMap(val))
+          ?.toList();
     if (map.containsKey("intMap"))
-      empty.intMap = juicer.decodeMap(
-              map["intMap"], (dynamic val) => val?.toInt(), <String, int>{})
-          as Map<String, int>;
+      this.intMap =
+          map["intMap"] == null ? null : Map<String, int>.from(map["intMap"]);
     if (map.containsKey("intList"))
-      empty.intList = juicer.decodeIterable(
-          map["intList"], (dynamic val) => val?.toInt(), <int>[]) as List<int>;
+      this.intList =
+          map["intList"]?.map<int>((val) => (val as num)?.toInt())?.toList();
     if (map.containsKey("numList"))
-      empty.numList = juicer.decodeIterable(
-          map["numList"], (dynamic val) => val as num, <num>[]) as List<num>;
+      this.numList = map["numList"]?.map<num>((val) => val as num)?.toList();
     if (map.containsKey("getterDecoration"))
-      empty.b = map["getterDecoration"]?.toInt();
+      this.b = map["getterDecoration"]?.toInt();
     if (map.containsKey("setterDecoration"))
-      empty.c = map["setterDecoration"]?.toInt();
+      this.c = map["setterDecoration"]?.toInt();
 // ignored1 is ignored
 // ignored2 is ignored
-    return empty;
+    return this;
   }
 }
 
-class _$DifferentJuicer extends ClassMapper<jcr_i2.Different> {
-  const _$DifferentJuicer();
-  @override
-  jcr_i2.Different newInstance() => jcr_i2.Different.json();
-  @override
-  Map<String, dynamic> toMap(Juicer juicer, jcr_i2.Different val) =>
-      juicer.removeNullValues({
-        "fooString": val.fooString,
-        "something": juicer.encode(val.something),
-        "deep": val.deep == null
+extension DifferentJuicerI2 on jcr_i2.Different {
+  Map<String, dynamic> toMap() => removeNullValues({
+        "fooString": this.fooString,
+        "something": this.something?.toMap(),
+        "deep": this.deep == null
             ? null
-            : Map.fromIterable(val.deep.keys,
-                value: (k) => juicer.encode(val.deep[k])),
-        "readOnly": val.readOnly,
+            : Map.fromIterable(this.deep.keys, value: (k) => this.deep[k]),
+        "readOnly": this.readOnly,
 // writeOnly is ignored
       });
-  @override
-  jcr_i2.Different fromMap(Juicer juicer, Map map, jcr_i2.Different empty) {
-    if (map.containsKey("fooString")) empty.fooString = map["fooString"];
+  jcr_i2.Different populateFromMap(Map map) {
+    if (map.containsKey("fooString")) this.fooString = map["fooString"];
     if (map.containsKey("something"))
-      empty.something =
-          juicer.decode(map["something"], (_) => jcr_i1.Something());
+      this.something = map["something"] == null
+          ? null
+          : jcr_i1.Something().populateFromMap(map["something"]);
     if (map.containsKey("deep"))
-      empty.deep = juicer.decodeMap(map["deep"], null, <String, dynamic>{})
-          as Map<String, dynamic>;
+      this.deep =
+          map["deep"] == null ? null : Map<String, dynamic>.from(map["deep"]);
 // readOnly is ignored
-    if (map.containsKey("writeOnly")) empty.writeOnly = map["writeOnly"];
-    return empty;
+    if (map.containsKey("writeOnly")) this.writeOnly = map["writeOnly"];
+    return this;
   }
 }
-
-const Juicer juicer = const Juicer(const {
-  jcr_i1.Something: const _$SomethingJuicer(),
-  jcr_i2.Different: const _$DifferentJuicer(),
-});

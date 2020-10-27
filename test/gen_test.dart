@@ -10,11 +10,11 @@ import "sample_gen.dart";
 void main() {
   test("Test encoding and decoding using the generated classes", () {
     Something sg = createSampleSomething();
-    dynamic val = juicer.encode(sg);
+    dynamic val = sg.toMap();
     print(json.encode(val));
     matchSomething(val, sg);
-    dynamic recoded = recode(juicer.encode(sg));
-    Something redecoded = juicer.decode(recoded, (_) => Something());
-    matchSomething(juicer.encode(redecoded), sg);
+    dynamic recoded = recode(sg.toMap());
+    Something redecoded = Something().populateFromMap(recoded);
+    matchSomething(redecoded.toMap(), sg);
   });
 }

@@ -2,10 +2,11 @@ name: juicer_gen_test
 version: 0.10.0+1
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
-  juicer: ^0.10.0
+  juicer: # ^0.10.0
+    path: ../juicer
 
 dev_dependencies:
   test:

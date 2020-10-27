@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      juicer:juicer:
+        enabled: true
+        generate_for:
+          - lib/sample_classes.dart
+        options:
+          jext: true
