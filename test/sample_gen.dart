@@ -85,7 +85,7 @@ Something createSampleSomething() {
       "five": null,
       "six": [null, true, pi, 2, "alpha"],
     }
-    ..differentList = new List.generate(3, (i) => createDifferent(i + 7))
+    ..differentList = new List.generate(3, (i) => i == 0 ? null : createDifferent(i + 6))
     ..differentIterable = new List.generate(2, (i) => createDifferent(i + 37))
     ..intMap = {
       "alpha": 1,

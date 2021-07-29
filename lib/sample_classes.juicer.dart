@@ -6,6 +6,7 @@
 
 import "package:juicer_gen_test/sample_classes/something.dart" as jcr_i1;
 import "package:juicer_gen_test/sample_classes/different.dart" as jcr_i2;
+// ignore_for_file: invalid_use_of_protected_member
 import 'package:juicer/juicer_util.dart';
 export "package:juicer_gen_test/sample_classes.dart";
 
@@ -49,13 +50,13 @@ extension SomethingJuicerI1 on jcr_i1.Something {
           : Map<String, dynamic>.from(map["rawMap"]);
     if (map.containsKey("differentList"))
       this.differentList = map["differentList"]
-          ?.map<jcr_i2.Different>(
-              (val) => jcr_i2.Different.json().populateFromMap(val))
+          ?.map<jcr_i2.Different>((val) =>
+              val == null ? null : jcr_i2.Different.json().populateFromMap(val))
           ?.toList();
     if (map.containsKey("differentIterable"))
       this.differentIterable = map["differentIterable"]
-          ?.map<jcr_i2.Different>(
-              (val) => jcr_i2.Different.json().populateFromMap(val))
+          ?.map<jcr_i2.Different>((val) =>
+              val == null ? null : jcr_i2.Different.json().populateFromMap(val))
           ?.toList();
     if (map.containsKey("intMap"))
       this.intMap =
