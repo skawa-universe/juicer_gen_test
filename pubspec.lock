@@ -273,7 +273,7 @@ packages:
       path: "../juicer"
       relative: true
     source: path
-    version: "0.11.0"
+    version: "0.11.1"
   logging:
     dependency: transitive
     description:

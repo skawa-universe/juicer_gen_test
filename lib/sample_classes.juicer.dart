@@ -6,12 +6,14 @@
 
 import "package:juicer_gen_test/sample_classes/something.dart" as jcr_i1;
 import "package:juicer_gen_test/sample_classes/different.dart" as jcr_i2;
+import "package:juicer_gen_test/sample_classes/rest.dart" as jcr_i3;
 // ignore_for_file: invalid_use_of_protected_member
 import 'package:juicer/juicer_util.dart';
 export "package:juicer_gen_test/sample_classes.dart";
 
 // package:juicer_gen_test/sample_classes/something.dart Something
 // package:juicer_gen_test/sample_classes/different.dart Different
+// package:juicer_gen_test/sample_classes/rest.dart Rest
 extension SomethingJuicerI1 on jcr_i1.Something {
   Map<String, dynamic> toMap() => removeNullValues({
         "simpleNum": this.simpleNum,
@@ -114,6 +116,25 @@ extension DifferentJuicerI2 on jcr_i2.Different {
               (val) => jcr_i2.Different.json().populateFromMap(val));
 // readOnly is ignored
     if (map.containsKey("writeOnly")) this.writeOnly = map["writeOnly"];
+    return this;
+  }
+}
+
+extension RestJuicerI3 on jcr_i3.Rest {
+  Map<String, dynamic> toMap() => removeNullValues({
+        "a": this.a,
+        "b": this.b,
+// rest is ignored
+      });
+  jcr_i3.Rest populateFromMap(Map map) {
+    Set keysRemaining = map.keys.toSet();
+    keysRemaining.remove("a");
+    if (map.containsKey("a")) this.a = map["a"]?.toInt();
+    keysRemaining.remove("b");
+    if (map.containsKey("b")) this.b = map["b"];
+    this.rest = {
+      for (String key in keysRemaining.whereType<String>()) key: map[key]
+    };
     return this;
   }
 }

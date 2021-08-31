@@ -1,5 +1,6 @@
 name: juicer_gen_test
 version: 0.10.0+1
+publish_to: none
 
 environment:
   sdk: ">=2.9.0 <3.0.0"

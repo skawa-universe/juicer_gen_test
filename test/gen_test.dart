@@ -18,4 +18,20 @@ void main() {
     Something redecoded = Something().populateFromMap(recoded);
     matchSomething(redecoded.toMap(), sg);
   });
+  test("Rest", () {
+    const extension = <String, dynamic>{
+      "c": ["this", "is"],
+      "d": {"not": ["defined", "in"]},
+      "e": "the class",
+      "f": true,
+      "g": null,
+    };
+    var encoded = <String, dynamic>{
+      "a": 7,
+      "b": "foo",
+    };
+    encoded.addAll(extension);
+    Rest r = Rest().populateFromMap(encoded);
+    expect(r.rest, extension);
+  });
 }
