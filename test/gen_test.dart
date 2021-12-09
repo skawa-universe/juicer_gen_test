@@ -10,7 +10,7 @@ import "sample_gen.dart";
 void main() {
   test("Test encoding and decoding using the generated classes", () {
     Something sg = createSampleSomething();
-    print(sg.differentList.map((e) => e == null ? 0 : 1).join(","));
+    print(sg.differentList?.map((e) => e == null ? 0 : 1).join(","));
     dynamic val = sg.toMap();
     print(json.encode(val));
     matchSomething(val, sg);

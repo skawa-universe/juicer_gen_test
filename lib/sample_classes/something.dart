@@ -11,7 +11,7 @@ class Something {
   @override
   String toString() => "Something($simpleNum)";
 
-  num simpleNum;
+  num? simpleNum;
 
   @juicer.Property(name: "getterDecoration")
   int get b => 0xb;
@@ -23,9 +23,9 @@ class Something {
   @juicer.Property(name: "setterDecoration")
   set c(int val) {}
 
-  double sampleDouble;
+  double? sampleDouble;
 
-  double integerDouble;
+  double? integerDouble;
 
   @juicer.Property(ignore: true)
   int get ignored1 => 0;
@@ -37,17 +37,17 @@ class Something {
   @juicer.Property(ignore: true)
   set ignored2(int val) {}
 
-  Different completelyDifferent;
+  Different? completelyDifferent;
 
-  Map<String, dynamic> rawMap;
+  Map<String, dynamic>? rawMap;
 
-  List<Different> differentList;
+  List<Different?>? differentList;
 
-  Iterable<Different> differentIterable;
+  Iterable<Different?>? differentIterable;
 
-  Map<String, int> intMap;
+  Map<String, int?>? intMap;
 
-  List<int> intList;
+  List<int?>? intList;
 
-  List<num> numList;
+  List<num?>? numList;
 }

@@ -10,7 +10,7 @@ Different createDifferent(int seed) {
   return new Different(new String.fromCharCodes(new List.generate(
       random.nextInt(8) + 2, (_) => random.nextInt(126 - 32) + 32)))
     ..something = (new Something()..simpleNum = seed)
-    ..deep = <String, List<int>>{
+    ..deep = <String, List<int>?>{
       "foo": [1, 2],
       "bar": [3, 4],
       "none": null
@@ -19,7 +19,7 @@ Different createDifferent(int seed) {
 
 dynamic recode(dynamic val) => json.decode(json.encode(val));
 
-void matchDifferent(dynamic val, Different expected) {
+void matchDifferent(dynamic val, Different? expected) {
   if (expected == null) {
     expect(val, isNull);
   } else {
@@ -31,13 +31,13 @@ void matchDifferent(dynamic val, Different expected) {
   }
 }
 
-void matchDifferentList(dynamic val, Iterable<Different> expected) {
+void matchDifferentList(dynamic val, Iterable<Different?>? expected) {
   if (expected == null) {
     expect(val, isNull);
   } else {
     expect(val, TypeMatcher<List>());
     List dl = val;
-    List<Different> el = expected is List ? expected : expected.toList();
+    List<Different?> el = expected is List ? expected as List<Different?> : expected.toList();
     expect(dl.length, el.length);
     for (int i = 0; i < el.length; ++i) {
       matchDifferent(dl[i], el[i]);
@@ -45,7 +45,7 @@ void matchDifferentList(dynamic val, Iterable<Different> expected) {
   }
 }
 
-void matchSomething(dynamic val, Something expected) {
+void matchSomething(dynamic val, Something? expected) {
   if (expected == null) {
     expect(val, isNull);
   } else {

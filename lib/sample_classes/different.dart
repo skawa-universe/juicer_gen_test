@@ -7,16 +7,16 @@ class Different {
 
   Different.json();
 
-  String fooString;
-  Something something;
+  String? fooString;
+  Something? something;
 
-  Map<String, /*List<int>*/ dynamic> deep; // deep types are not supported yet
+  Map<String, /*List<int>*/ dynamic>? deep; // deep types are not supported yet
 
-  Map<String, Map> notSoDeep;
+  Map<String, Map?>? notSoDeep;
 
-  Map<String, Different> otherNamedDiffs;
+  Map<String, Different?>? otherNamedDiffs;
 
   int get readOnly => 7;
 
-  set writeOnly(String value) => print(value);
+  set writeOnly(String? value) => print(value);
 }

@@ -22,13 +22,15 @@ extension SomethingJuicerI1 on jcr_i1.Something {
         "completelyDifferent": this.completelyDifferent?.toMap(),
         "rawMap": this.rawMap == null
             ? null
-            : Map.fromIterable(this.rawMap.keys, value: (k) => this.rawMap[k]),
-        "differentList": this.differentList?.map((e) => e?.toMap())?.toList(),
+            : Map.fromIterable(this.rawMap!.keys,
+                value: (k) => this.rawMap![k]),
+        "differentList": this.differentList?.map((e) => e?.toMap()).toList(),
         "differentIterable":
-            this.differentIterable?.map((e) => e?.toMap())?.toList(),
+            this.differentIterable?.map((e) => e?.toMap()).toList(),
         "intMap": this.intMap == null
             ? null
-            : Map.fromIterable(this.intMap.keys, value: (k) => this.intMap[k]),
+            : Map.fromIterable(this.intMap!.keys,
+                value: (k) => this.intMap![k]),
         "intList": this.intList?.toList(),
         "numList": this.numList?.toList(),
         "getterDecoration": this.b,
@@ -52,22 +54,22 @@ extension SomethingJuicerI1 on jcr_i1.Something {
           : Map<String, dynamic>.from(map["rawMap"]);
     if (map.containsKey("differentList"))
       this.differentList = map["differentList"]
-          ?.map<jcr_i2.Different>((val) =>
+          ?.map<jcr_i2.Different?>((val) =>
               val == null ? null : jcr_i2.Different.json().populateFromMap(val))
           ?.toList();
     if (map.containsKey("differentIterable"))
       this.differentIterable = map["differentIterable"]
-          ?.map<jcr_i2.Different>((val) =>
+          ?.map<jcr_i2.Different?>((val) =>
               val == null ? null : jcr_i2.Different.json().populateFromMap(val))
           ?.toList();
     if (map.containsKey("intMap"))
       this.intMap =
-          map["intMap"] == null ? null : Map<String, int>.from(map["intMap"]);
+          map["intMap"] == null ? null : Map<String, int?>.from(map["intMap"]);
     if (map.containsKey("intList"))
       this.intList =
-          map["intList"]?.map<int>((val) => (val as num)?.toInt())?.toList();
+          map["intList"]?.map<int?>((val) => (val as num?)?.toInt())?.toList();
     if (map.containsKey("numList"))
-      this.numList = map["numList"]?.map<num>((val) => val as num)?.toList();
+      this.numList = map["numList"]?.map<num?>((val) => val as num)?.toList();
     if (map.containsKey("getterDecoration"))
       this.b = map["getterDecoration"]?.toInt();
     if (map.containsKey("setterDecoration"))
@@ -84,15 +86,15 @@ extension DifferentJuicerI2 on jcr_i2.Different {
         "something": this.something?.toMap(),
         "deep": this.deep == null
             ? null
-            : Map.fromIterable(this.deep.keys, value: (k) => this.deep[k]),
+            : Map.fromIterable(this.deep!.keys, value: (k) => this.deep![k]),
         "notSoDeep": this.notSoDeep == null
             ? null
-            : Map.fromIterable(this.notSoDeep.keys,
-                value: (k) => this.notSoDeep[k]),
+            : Map.fromIterable(this.notSoDeep!.keys,
+                value: (k) => this.notSoDeep![k]),
         "otherNamedDiffs": this.otherNamedDiffs == null
             ? null
-            : Map.fromIterable(this.otherNamedDiffs.keys,
-                value: (k) => this.otherNamedDiffs[k]?.toMap()),
+            : Map.fromIterable(this.otherNamedDiffs!.keys,
+                value: (k) => this.otherNamedDiffs![k]?.toMap()),
         "readOnly": this.readOnly,
 // writeOnly is ignored
       });
@@ -108,7 +110,7 @@ extension DifferentJuicerI2 on jcr_i2.Different {
     if (map.containsKey("notSoDeep"))
       this.notSoDeep = map["notSoDeep"] == null
           ? null
-          : Map<String, Map>.from(map["notSoDeep"]);
+          : Map<String, Map?>.from(map["notSoDeep"]);
     if (map.containsKey("otherNamedDiffs"))
       this.otherNamedDiffs = map["otherNamedDiffs"] == null
           ? null
