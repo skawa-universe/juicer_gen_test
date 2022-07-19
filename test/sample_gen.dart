@@ -37,7 +37,8 @@ void matchDifferentList(dynamic val, Iterable<Different?>? expected) {
   } else {
     expect(val, TypeMatcher<List>());
     List dl = val;
-    List<Different?> el = expected is List ? expected as List<Different?> : expected.toList();
+    List<Different?> el =
+        expected is List ? expected as List<Different?> : expected.toList();
     expect(dl.length, el.length);
     for (int i = 0; i < el.length; ++i) {
       matchDifferent(dl[i], el[i]);
@@ -85,7 +86,8 @@ Something createSampleSomething() {
       "five": null,
       "six": [null, true, pi, 2, "alpha"],
     }
-    ..differentList = new List.generate(3, (i) => i == 0 ? null : createDifferent(i + 6))
+    ..differentList =
+        new List.generate(3, (i) => i == 0 ? null : createDifferent(i + 6))
     ..differentIterable = new List.generate(2, (i) => createDifferent(i + 37))
     ..intMap = {
       "alpha": 1,

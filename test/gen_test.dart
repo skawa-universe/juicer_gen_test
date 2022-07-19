@@ -2,7 +2,6 @@ import "dart:convert";
 
 import "package:test/test.dart";
 
-import "package:juicer_gen_test/sample_classes.dart";
 import "package:juicer_gen_test/sample_classes.juicer.dart";
 
 import "sample_gen.dart";

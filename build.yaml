@@ -7,3 +7,4 @@ targets:
           - lib/sample_classes.dart
         options:
           jext: true
+          nnbd: true
