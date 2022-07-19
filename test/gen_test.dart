@@ -2,7 +2,6 @@ import "dart:convert";
 
 import "package:test/test.dart";
 
-import "package:juicer_gen_test/sample_classes.dart";
 import "package:juicer_gen_test/sample_classes.juicer.dart";
 
 import "sample_gen.dart";
@@ -33,5 +32,18 @@ void main() {
     encoded.addAll(extension);
     Rest r = Rest().populateFromMap(encoded);
     expect(r.rest, extension);
+  });
+  test("copyWith", () {
+    Something sg = createSampleSomething();
+    List<int> newNumList = [0, 1, 1, 8, 9, 9, 9];
+    Something clone = sg.copyWith(simpleNum: 333, numList: newNumList); 
+    expect(clone, isNot(same(sg)));
+    expect(clone.completelyDifferent, isNot(same(sg.completelyDifferent)));
+    expect(clone.completelyDifferent.toMap(), sg.completelyDifferent.toMap());
+    expect(clone.simpleNum, 333);
+    expect(clone.numList, newNumList);
+    dynamic recoded = recode(sg.toMap());
+    Something redecoded = Something().populateFromMap(recoded);
+    matchSomething(redecoded.toMap(), sg);
   });
 }
