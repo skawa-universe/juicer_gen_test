@@ -8,6 +8,7 @@ import "package:juicer_gen_test/sample_classes/something.dart" as jcr_i1;
 import "package:juicer_gen_test/sample_classes/different.dart" as jcr_i2;
 import "package:juicer_gen_test/sample_classes/rest.dart" as jcr_i3;
 // ignore_for_file: invalid_use_of_protected_member
+// ignore_for_file: unnecessary_cast
 import 'package:juicer/juicer_util.dart';
 export "package:juicer_gen_test/sample_classes.dart";
 
@@ -76,6 +77,51 @@ extension SomethingJuicerI1 on jcr_i1.Something {
 // ignored2 is ignored
     return this;
   }
+
+  jcr_i1.Something copyWith({
+    num simpleNum,
+    double sampleDouble,
+    double integerDouble,
+    jcr_i2.Different completelyDifferent,
+    Map<String, dynamic> rawMap,
+    List<jcr_i2.Different> differentList,
+    Iterable<jcr_i2.Different> differentIterable,
+    Map<String, int> intMap,
+    List<int> intList,
+    List<num> numList,
+    int b,
+    int c,
+  }) =>
+      jcr_i1.Something()
+        ..simpleNum = simpleNum ?? (this.simpleNum)
+        ..sampleDouble = sampleDouble ?? (this.sampleDouble)
+        ..integerDouble = integerDouble ?? (this.integerDouble)
+        ..completelyDifferent =
+            completelyDifferent ?? (this.completelyDifferent?.copyWith())
+        ..rawMap = rawMap ??
+            (this.rawMap == null
+                ? null
+                : Map<String, dynamic>.from(this.rawMap))
+        ..differentList = differentList ??
+            (this
+                .differentList
+                ?.map<jcr_i2.Different>((val) =>
+                    val == null ? null : jcr_i2.Different.json().copyWith())
+                ?.toList())
+        ..differentIterable = differentIterable ??
+            (this
+                .differentIterable
+                ?.map<jcr_i2.Different>((val) =>
+                    val == null ? null : jcr_i2.Different.json().copyWith())
+                ?.toList())
+        ..intMap = intMap ??
+            (this.intMap == null ? null : Map<String, int>.from(this.intMap))
+        ..intList = intList ??
+            (this.intList?.map<int>((val) => (val as num)?.toInt())?.toList())
+        ..numList =
+            numList ?? (this.numList?.map<num>((val) => val as num)?.toList())
+        ..b = b ?? (this.b)
+        ..c = c ?? (this.c);
 }
 
 extension DifferentJuicerI2 on jcr_i2.Different {
@@ -118,6 +164,28 @@ extension DifferentJuicerI2 on jcr_i2.Different {
     if (map.containsKey("writeOnly")) this.writeOnly = map["writeOnly"];
     return this;
   }
+
+  jcr_i2.Different copyWith({
+    String fooString,
+    jcr_i1.Something something,
+    Map<String, dynamic> deep,
+    Map<String, Map> notSoDeep,
+    Map<String, jcr_i2.Different> otherNamedDiffs,
+  }) =>
+      jcr_i2.Different.json()
+        ..fooString = fooString ?? (this.fooString)
+        ..something = something ?? (this.something?.copyWith())
+        ..deep = deep ??
+            (this.deep == null ? null : Map<String, dynamic>.from(this.deep))
+        ..notSoDeep = notSoDeep ??
+            (this.notSoDeep == null
+                ? null
+                : Map<String, Map>.from(this.notSoDeep))
+        ..otherNamedDiffs = otherNamedDiffs ??
+            (this.otherNamedDiffs == null
+                ? null
+                : nullSafeMapJsonMapValues(this.otherNamedDiffs,
+                    (val) => jcr_i2.Different.json().copyWith()));
 }
 
 extension RestJuicerI3 on jcr_i3.Rest {
@@ -137,4 +205,15 @@ extension RestJuicerI3 on jcr_i3.Rest {
     };
     return this;
   }
+
+  jcr_i3.Rest copyWith({
+    int a,
+    String b,
+    Map<String, dynamic> rest,
+  }) =>
+      jcr_i3.Rest()
+        ..a = a ?? (this.a)
+        ..b = b ?? (this.b)
+        ..rest = rest ??
+            (this.rest == null ? null : Map<String, dynamic>.from(this.rest));
 }
