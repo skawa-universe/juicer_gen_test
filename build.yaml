@@ -4,6 +4,6 @@ targets:
       juicer:juicer:
         enabled: true
         generate_for:
-          - lib/sample_classes.dart
+          - lib/**
         options:
           jext: true
