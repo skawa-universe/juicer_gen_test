@@ -1,12 +1,45 @@
 import "package:juicer/metadata.dart";
 import "something.dart";
 
+enum NatoAlphabet {
+  alfa,
+  bravo,
+  charlie,
+  delta,
+  echo,
+  foxtrot,
+  golf,
+  hotel,
+  india,
+  juliett,
+  kilo,
+  lima,
+  mike,
+  november,
+  oscar,
+  papa,
+  quebec,
+  romeo,
+  sierra,
+  tango,
+  uniform,
+  victor,
+  whiskey,
+  xray,
+  yankee,
+  zulu,
+}
+
 /// This is a different class. Different to `Something`.
 @juiced
 class Different {
   Different(this.fooString);
 
   Different.json();
+
+  NatoAlphabet letter;
+  List<NatoAlphabet> string;
+  Map<String, NatoAlphabet> encoding;
 
   String fooString;
   Something something;
