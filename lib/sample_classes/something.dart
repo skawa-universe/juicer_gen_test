@@ -50,4 +50,6 @@ class Something {
   List<int?>? intList;
 
   List<num?>? numList;
+  
+  List<String> nonNullableList = [];
 }
