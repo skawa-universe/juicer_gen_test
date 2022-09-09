@@ -13,6 +13,8 @@ class Something {
 
   num simpleNum;
 
+  NatoAlphabet someLetter = NatoAlphabet.golf;
+
   @juicer.Property(name: "getterDecoration")
   int get b => 0xb;
 
